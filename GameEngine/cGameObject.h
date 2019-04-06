@@ -13,6 +13,7 @@
 //#include <Windows.h>
 #include "DebugRenderer/iDebugRenderer.h"
 #include "cAnimationController.h"
+#include "sModelDrawInfo.h"
 
 
 class cSimpleAssimpSkinnedMesh;	// Forward declare
@@ -150,7 +151,7 @@ public:
 	nPhysics::iRigidBody* rigidBody;
 	float mass;
 	float inverseMass;
-	
+	sModelDrawInfo modelInfo;
 	
 
 	// Assume that everything is a sphere...

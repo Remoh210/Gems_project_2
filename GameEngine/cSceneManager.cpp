@@ -33,7 +33,7 @@ DWORD WINAPI LOAD_MESHES(PVOID pvParam)
 		sModelDrawInfo curDrInf;
 		curDrInf.meshFileName = curM->highResMeshName;
 		g_pTheVAOMeshManager->LoadModelInfoFromFile(curDrInf);
-		
+		curM->modelInfo = curDrInf;
 
 	}
 	bLoadedVAO = false;
@@ -83,9 +83,8 @@ void cSceneManager::LoadHighResMeshes()
 	for (int i = 0; i < this->vec_Load_toVAO_meshes.size(); i++)
 	{
 		cGameObject* curM = vec_Load_toVAO_meshes[i];
-		sModelDrawInfo curDrInf;
-		curDrInf.meshFileName = curM->highResMeshName;
-		g_pTheVAOMeshManager->LoadModelInfoFromFile(curDrInf);
+
+		g_pTheVAOMeshManager->LoadModelInfoFromFile(curM->modelInfo);
 
 
 	}
@@ -103,9 +102,7 @@ void cSceneManager::LoadtoVAO()
 		for (int i = 0; i < this->vec_Load_toVAO_meshes.size(); i++)
 		{
 			cGameObject* curM = vec_Load_toVAO_meshes[i];
-			sModelDrawInfo curDrInf;
-			curDrInf.meshFileName = curM->highResMeshName;
-			g_pTheVAOMeshManager->LoadModelIntoVAO(curDrInf, program);
+			g_pTheVAOMeshManager->LoadModelIntoVAO(curM->modelInfo, program);
 			curM->meshName = curM->highResMeshName;
 
 		}
