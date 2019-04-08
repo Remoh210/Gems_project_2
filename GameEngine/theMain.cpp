@@ -134,6 +134,40 @@ GLuint g_FBO_colourTexture = 0;
 GLuint g_FBO_depthTexture = 0;
 GLint g_FBO_SizeInPixes = 512;		// = 512 the WIDTH of the framebuffer, in pixels;
 
+
+
+
+
+
+
+
+
+//DWORD WINAPI UpdateDalekPosition(void* pInitialData)
+//{
+//
+//
+//
+//
+//	while (true)
+//	{
+//
+//		gPhysicsWorld->Update(deltaTime);
+//
+//	}
+//
+//
+//	return 0;
+//}
+
+
+
+
+
+
+
+
+
+
 int main(void)
 {
 	loadConfig();
@@ -366,6 +400,24 @@ int main(void)
 	camera.setThirdPerson(player);
 
 
+
+
+
+
+
+
+
+	//LPDWORD phThread = 0;
+	//DWORD hThread = 0;
+	//HANDLE hThreadHandle = 0;
+
+
+	//hThreadHandle = CreateThread(NULL,
+	//	0,
+	//	&UpdateDalekPosition,
+	//	0,
+	//	0,
+	//	(DWORD*)&phThread);
 
 
 
@@ -676,6 +728,10 @@ int main(void)
 
 
 		//New Dll physics
+
+
+
+
 		gPhysicsWorld->Update(deltaTime);
 
 		
@@ -740,52 +796,7 @@ int main(void)
 
 		}
 
-		if (bIsDebugMode) {
-			// Call the debug renderer
-			for (int i = 0; i < vec_pObjectsToDraw.size(); i++) {
-				cGameObject* curObj = vec_pObjectsToDraw[i];
-				//curObj->bIsVisible = false;
-				curObj->bDontLight = true;
-				if (curObj->rigidBody != NULL) {
-					if (curObj->rigidBody->GetShape()->GetShapeType() == nPhysics::SHAPE_TYPE_SPHERE) {
-
-						float rad;
-						curObj->rigidBody->GetShape()->GetSphereRadius(rad);
-						g_simpleDubugRenderer->drawCube(curObj->rigidBody->GetPosition(), rad);
-					}
-
-					//if (curObj->rigidBody->GetShape()->GetShapeType() == nPhysics::SHAPE_TYPE_PLANE) {
-					//	//curObj->bIsWireFrame = true;
-					//	//curObj->bIsVisible = true;
-					//	//glm::mat4 matIden = glm::mat4(1.0f);
-					//	//DrawObject(curObj, matIden, program);
-					//}
-				}
-				if (curObj->softBody != NULL) 
-				{
-
-					glm::vec3 max;
-					glm::vec3 min;
-					glm::vec3 center;
-					curObj->softBody->GetAABB(min, max);
-					center = (min + max) / 2.0f;
-					float size = glm::distance(min, max) / 2.0f;
-					g_simpleDubugRenderer->drawCube(center, size);
-
-				}
-			}
-		}
-		else
-		{
-			for (int i = 0; i < vec_pObjectsToDraw.size(); i++) {
-				cGameObject* curObj = vec_pObjectsToDraw[i];
-				if (!curObj->bIsDebug) {
-					curObj->bIsVisible = true;
-					curObj->bIsWireFrame = false;
-					curObj->bDontLight = false;
-				}
-			}
-		}
+	
 		::g_pDebugRendererACTUAL->RenderDebugObjects(matView, matProjection, deltaTime);
 
 		//::p_LuaScripts->UpdateCG(deltaTime);

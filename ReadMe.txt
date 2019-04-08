@@ -1,5 +1,15 @@
 !!Run on Debug or Release x64!!
 
+--Threading--
+I've implemented async model loader (just for ply now)
+using non-blocking approach, storing meshdata in game object,
+giving object simplified meshes (for now just wireframe boxes)
+and when models are loaded - changing game object meshes to high res versions
+-----------
+
+
+
+--Animation---
 Instead of rolling I'm also made "strafe with casting spell" animation
 since I'm going to use it for Game Jam
 

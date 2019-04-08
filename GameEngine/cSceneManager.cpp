@@ -44,6 +44,19 @@ DWORD WINAPI LOAD_MESHES(PVOID pvParam)
 //
 bool cSceneManager::LoadModels_Async()
 {
+	for (int i = 0; i < this->vec_Load_toVAO_meshes.size(); i++)
+	{
+		cGameObject* curM = vec_Load_toVAO_meshes[i];
+
+		curM->bIsWireFrame = true;
+		curM->setDiffuseColour(glm::vec3(0.0f, 1.0f, 0.0f));
+
+
+	}
+
+
+
+
 	// Create thread
 	LPDWORD phThread = 0;
 	DWORD hThread = 0;
@@ -103,6 +116,8 @@ void cSceneManager::LoadtoVAO()
 		{
 			cGameObject* curM = vec_Load_toVAO_meshes[i];
 			g_pTheVAOMeshManager->LoadModelIntoVAO(curM->modelInfo, program);
+			curM->bIsWireFrame = false;
+			curM->setDiffuseColour(glm::vec3(0.0f,0.0f,0.0f));
 			curM->meshName = curM->highResMeshName;
 
 		}
